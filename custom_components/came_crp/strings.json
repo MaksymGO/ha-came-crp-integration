@@ -1,0 +1,20 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Connect to a CAME CRP controller",
+        "description": "Use a local serial port, raw TCP serial bridge, or ESPHome serial_proxy.",
+        "data": {
+          "name": "Name",
+          "transport_url": "Serial URL",
+          "transport_kind": "Connection type",
+          "model": "Controller model",
+          "device_address": "CRP address",
+          "baudrate": "Baud rate"
+        }
+      }
+    },
+    "error": {"required": "This field is required."},
+    "abort": {"already_configured": "This connection is already configured."}
+  }
+}

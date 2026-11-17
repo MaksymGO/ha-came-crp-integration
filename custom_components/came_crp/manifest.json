@@ -1,0 +1,9 @@
+{
+  "domain": "came_crp",
+  "name": "CAME CRP Gate",
+  "codeowners": ["@MaksymGO"],
+  "config_flow": true,
+  "documentation": "https://github.com/MaksymGO/ha-came-crp-integration",
+  "iot_class": "local_polling",
+  "requirements": ["serialx[esphome]==1.15.1"]
+}
