@@ -18,8 +18,11 @@ class CRPTransport:
 
     async def async_connect(self) -> None:
         self.reader, self.writer = await serialx.open_serial_connection(
-            self.url, baudrate=self.baudrate, bytesize=8,
-            parity=serialx.Parity.NONE, stopbits=serialx.StopBits.ONE
+            self.url,
+            baudrate=self.baudrate,
+            bytesize=8,
+            parity=serialx.Parity.NONE,
+            stopbits=serialx.StopBits.ONE,
         )
 
     async def async_write(self, data: bytes) -> None:

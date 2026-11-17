@@ -44,7 +44,9 @@ def crc16_a001(data: bytes) -> int:
 
 
 def _wrap(raw: bytes) -> bytes:
-    return bytes((START,)) + b"".join(ESCAPE.get(byte, bytes((byte,))) for byte in raw) + bytes((END,))
+    return (
+        bytes((START,)) + b"".join(ESCAPE.get(byte, bytes((byte,))) for byte in raw) + bytes((END,))
+    )
 
 
 def encode_request(
@@ -107,9 +109,15 @@ def decode_frame(wire: bytes) -> CRPFrame:
         commands.append(bytes(raw[pos : pos + size]))
         pos += size
     return CRPFrame(
-        flags=raw[0], header_byte=raw[1], source_type=raw[2], source_address=raw[3],
-        target_type=raw[4], target_address=raw[5], counter=raw[6],
-        commands=tuple(commands), wire=wire,
+        flags=raw[0],
+        header_byte=raw[1],
+        source_type=raw[2],
+        source_address=raw[3],
+        target_type=raw[4],
+        target_address=raw[5],
+        counter=raw[6],
+        commands=tuple(commands),
+        wire=wire,
     )
 
 

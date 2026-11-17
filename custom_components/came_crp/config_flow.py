@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import voluptuous as vol
-
 from homeassistant import config_entries
 from homeassistant.const import CONF_NAME
 
@@ -32,8 +31,11 @@ class CAMECRPConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                 vol.Required(CONF_NAME, default="CAME CRP Gate"): str,
                 vol.Required("transport_url", default="socket://10.21.30.50:6638"): str,
                 vol.Required("transport_kind", default="tcp"): vol.In(
-                    {"serial": "Local serial port", "tcp": "Raw TCP bridge (EW11 / uart_tcp)",
-                     "esphome": "ESPHome serial_proxy URI"}
+                    {
+                        "serial": "Local serial port",
+                        "tcp": "Raw TCP bridge (EW11 / uart_tcp)",
+                        "esphome": "ESPHome serial_proxy URI",
+                    }
                 ),
                 vol.Required("model", default="auto"): str,
                 vol.Required(CONF_DEVICE_ADDRESS, default=DEFAULT_ADDRESS): vol.All(

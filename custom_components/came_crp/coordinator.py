@@ -21,23 +21,27 @@ from .const import (
     DOMAIN,
     SCAN_INTERVAL,
 )
+from .models import PROFILES, detect_profile, information_signature
 from .protocol import CRPError, CRPFrame, decode_frame, encode_request, split_frames
 from .transport import CRPTransport
-from .models import PROFILES, detect_profile, information_signature
 
 
 class CAMECRPCoordinator(DataUpdateCoordinator[dict[str, object]]):
     """Own the serial stream and issue conservative CRP read-state requests."""
 
     def __init__(self, hass: HomeAssistant, config: dict[str, object]) -> None:
-        super().__init__(hass, logger=logging.getLogger(__name__), name=DOMAIN,
-                         update_interval=SCAN_INTERVAL)
+        super().__init__(
+            hass, logger=logging.getLogger(__name__), name=DOMAIN, update_interval=SCAN_INTERVAL
+        )
         self.config = config
         self.transport = CRPTransport(str(config["transport_url"]), int(config[CONF_BAUDRATE]))
         self.address = int(config.get(CONF_DEVICE_ADDRESS, DEFAULT_ADDRESS))
         self.model_key = str(config.get("model", "auto"))
         self.model_name = PROFILES.get(self.model_key.lower(), PROFILES["generic"]).name
-        if self.model_key.lower() not in {"auto", "generic"} and self.model_key.lower() not in PROFILES:
+        if (
+            self.model_key.lower() not in {"auto", "generic"}
+            and self.model_key.lower() not in PROFILES
+        ):
             self.model_name = self.model_key
         self.info_raw: str | None = None
         self.info_signature: str | None = None

@@ -3,7 +3,6 @@
 from datetime import timedelta
 
 DOMAIN = "came_crp"
-PLATFORMS = ["sensor"]
 SCAN_INTERVAL = timedelta(seconds=10)
 
 CONF_DEVICE_ADDRESS = "device_address"
