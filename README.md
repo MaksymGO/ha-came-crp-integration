@@ -3,6 +3,8 @@
 Custom Home Assistant integration for CAME gate controllers that communicate
 over the CAME Remote Protocol (CRP).
 
+![CAME+ CRP integration logo](custom_components/came_crp/brand/logo.png)
+
 ## Development status
 
 The current `develop` branch starts with a transport and diagnostics
@@ -39,3 +41,6 @@ installable integration. The starting version is `0.1.0`. Changes pushed to
 
 Use the `develop` branch for manual installation during development. Use a
 GitHub Release or HACS after the first release from `main`.
+
+The integration artwork lives in `custom_components/came_crp/brand/` and is
+served locally by Home Assistant 2026.3 and newer.

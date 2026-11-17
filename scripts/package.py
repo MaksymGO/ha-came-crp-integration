@@ -13,7 +13,7 @@ def build() -> Path:
     target.parent.mkdir(exist_ok=True)
     with ZipFile(target, "w", ZIP_DEFLATED) as archive:
         for source in sorted(COMPONENT.rglob("*")):
-            if source.is_file() and source.suffix in {".py", ".json"}:
+            if source.is_file() and source.suffix in {".py", ".json", ".png", ".svg"}:
                 archive.write(source, source.relative_to(ROOT))
     return target
 

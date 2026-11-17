@@ -89,3 +89,17 @@ def test_unknown_information_keeps_generic_profile() -> None:
 
     assert models.information_signature(info) == "class_7F_board_55"
     assert models.detect_profile(info).key == "generic"
+
+
+def test_home_assistant_brand_assets_have_supported_dimensions() -> None:
+    brand = ROOT / "custom_components/came_crp/brand"
+    for filename, expected in {
+        "icon.png": (256, 256),
+        "icon@2x.png": (512, 512),
+        "logo.png": (820, 214),
+        "logo@2x.png": (1640, 428),
+    }.items():
+        png = (brand / filename).read_bytes()
+        assert png[:8] == b"\x89PNG\r\n\x1a\n"
+        assert int.from_bytes(png[16:20], "big") == expected[0]
+        assert int.from_bytes(png[20:24], "big") == expected[1]

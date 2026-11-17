@@ -1,5 +1,8 @@
 # CAME CRP for Home Assistant — prototype
 
+The CAME logo and icon assets are in `brand/`. Home Assistant 2026.3 and newer
+loads custom integration artwork from this folder.
+
 This is the first integration scaffold, intended to live in the GitHub project
 `MaksymGO/ha-came-crp-integration`. The linked GitHub repository was not
 available to this workspace, so the files currently live under this research
